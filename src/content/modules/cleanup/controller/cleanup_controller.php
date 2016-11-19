@@ -23,9 +23,11 @@ ORDER BY data_length DESC;";
 	}
 	public function cleanTable($table) {
 		$allowed = $this->getAllowedTables ();
+		$result = null;
 		if (in_array ( $table, $allowed )) {
-			Database::query ( $table );
+			$result = Database::truncateTable ( $table, false );
 		}
+		return $result;
 	}
 	/*
 	 * returns the size of all files in log folder in MB
