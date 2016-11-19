@@ -14,7 +14,7 @@ ORDER BY data_length DESC;";
 		}
 		return $result;
 	}
-	public function getAllowedTables() {
+	private function getAllowedTables() {
 		return array (
 				tbname ( "log" ),
 				tbname ( "history" ),
