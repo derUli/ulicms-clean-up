@@ -33,6 +33,9 @@ ORDER BY data_length DESC;";
 	public function canCleanLogDir() {
 		return ($this->getDirSize () > 0);
 	}
+	public function cleanLogDir() {
+		return SureRemoveDir ( ULICMS_ROOT . "/content/log", false );
+	}
 	public function getLogDirSize() {
 		return round ( $this->getDirSize ( ULICMS_ROOT . "/content/log" ) / 1024 / 1024, 2 );
 	}
