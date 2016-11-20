@@ -25,7 +25,8 @@ function cleanup_admin() {
 				<td style="text-align: center"><input type="checkbox"
 					id="c_<?php Template::escape($table->TABLE_NAME)?>"
 					name="clean_tables[]"
-					value="<?php Template::escape($table->TABLE_NAME);?>" checked></td>
+					value="<?php Template::escape($table->TABLE_NAME);?>"
+					<?php if($table->TABLE_NAME != tbname("history")) echo "checked";?>></td>
 				<td><label for="c_<?php Template::escape($table->TABLE_NAME)?>"><?php Template::escape($table->TABLE_NAME);?></label></td>
 				<td><?php Template::escape($table->size_in_mb);?> MB</td>
 			</tr>
