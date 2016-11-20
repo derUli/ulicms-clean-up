@@ -2,6 +2,7 @@
 $acl = new ACL ();
 if ($acl->hasPermission ( "cleanup" )) {
 	$controller = new CleanUpController ();
+	$mysql_optimize_available = in_array ( "mysql_optimize", getAllModules () );
 	?>
 <h1>Clean Up</h1>
 <?php
@@ -39,6 +40,14 @@ if ($acl->hasPermission ( "cleanup" )) {
  <?php }?>
 </p>
 <?php }?>
+
+<?php
+	if ($mysql_optimize_available and isset ( $_POST ["optimize_db"] )) {
+		include_once getModulePath ( "mysql_optimize" ) . "mysql_optimize_lib.php";
+		$cfg = new config ();
+		db_optimize ( $cfg->db_database );
+	}
+	?>
 
 <p><?php translate("cleaning_finished");?></p>
 <p>

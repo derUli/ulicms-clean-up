@@ -7,6 +7,7 @@ function cleanup_admin() {
 	$canCleanLogFolder = $controller->canCleanLogDir ();
 	$canCleanTmpFolder = $controller->canCleanTmpDir ();
 	$crapFilesCount = $controller->getCrapFilesCount ();
+	$mysql_optimize_available = in_array ( "mysql_optimize", getAllModules () );
 	?>
 <form action="index.php?action=cleanup" method="post">
 <?php csrf_token_html();?>
@@ -56,7 +57,17 @@ function cleanup_admin() {
 				<td><?php echo $controller->getCrapFilesCount();?> <?php translate("files");?></td>
 			</tr>
 <?php }?>
+<?php
 
+	if ($mysql_optimize_available) {
+		?>
+		<tr>
+				<td style="text-align: center"><input type="checkbox"
+					id="optimize_db" name="optimize_db" value="1" checked></td>
+				<td><label for="optimize_db">optimize_db</label></td>
+				<td></td>
+			</tr>
+	<?php }?>
 </tbody>
 	</table>
 	<p>
