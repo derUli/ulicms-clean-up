@@ -5,13 +5,19 @@ if ($acl->hasPermission ( "cleanup" )) {
 	?>
 <h1>Clean Up</h1>
 <?php
-	foreach ( $_POST ["clean_tables"] as $table ) {
-		$controller->cleanTable ( $table );
-		$tname = Template::getEscape ( $table );
-		?>
+	if (isset ( $_POST ["clean_tables"] ) and is_array ( $_POST ["clean_tables"] )) {
+		foreach ( $_POST ["clean_tables"] as $table ) {
+			$controller->cleanTable ( $table );
+			$tname = Template::getEscape ( $table );
+			?>
 <p><?php translate("TRUNCATE_TABLE_X" , array("%x" => $tname));?></p>
-<?php }?>
-<?php if(isset($_POST["log_files"])){?>
+<?php }}?>
+<?php
+
+	
+if (isset ( $_POST ["log_files"] )) {
+		$controller->cleanLogDir ();
+		?>
 
 <p><?php translate("TRUNCATE_LOG_FILES");?></p>
 <?php }?>

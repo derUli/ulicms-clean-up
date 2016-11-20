@@ -20,18 +20,18 @@ function cleanup_admin() {
 <?php foreach($tables as $table){?>
 <tr>
 				<td style="text-align: center"><input type="checkbox"
-					id="c_<?php Template::escape($table)?>" name="clean_tables[]"
-					value="<?php Template::escape($table);?>" checked></td>
-				<td><?php Template::escape($table->TABLE_NAME);?></td>
+					id="c_<?php Template::escape($table->TABLE_NAME)?>"
+					name="clean_tables[]"
+					value="<?php Template::escape($table->TABLE_NAME);?>" checked></td>
+				<td><label for="c_<?php Template::escape($table->TABLE_NAME)?>"><?php Template::escape($table->TABLE_NAME);?></label></td>
 				<td><?php Template::escape($table->size_in_mb);?> MB</td>
 			</tr>
 <?php }?>
 <?php if($canCleanLogFolder){?>
 <tr>
 				<td style="text-align: center"><input type="checkbox"
-					id="c_<?php Template::escape($table)?>" name="log_files" value="1"
-					checked></td>
-				<td>log_files</td>
+					id="c_log_files" name="log_files" value="1" checked></td>
+				<td><label for="c_log_files">log_files</label></td>
 				<td><?php echo $controller->getLogDirSize();?> MB</td>
 			</tr>
 <?php }?>
