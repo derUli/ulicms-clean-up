@@ -41,6 +41,25 @@ ORDER BY data_length DESC;";
 	public function getLogDirSize() {
 		return round ( $this->getDirSize ( ULICMS_ROOT . "/content/log" ) / 1024 / 1024, 2 );
 	}
+	public function getCrapFilesCount() {
+		return count ( $this->getAllCrapFiles () );
+	}
+	public function getAllCrapFiles() {
+		$annoyingFilenames = array (
+				'.DS_Store', // mac specific
+				'.localized', // mac specific
+				'Thumbs.db' 
+		); // windows specific
+		
+		$files = find_all_files ( ULICMS_ROOT );
+		$crapFiles = array ();
+		foreach ( $files as $file ) {
+			if (in_array ( basename ( $file ), $annoyingFilenames )) {
+				$crapFiles [] = $file;
+			}
+		}
+		return $crapFiles;
+	}
 	private function getLogDirSizeInByte() {
 		return ($this->getDirSize ( ULICMS_ROOT . "/content/log" ));
 	}

@@ -6,6 +6,7 @@ function cleanup_admin() {
 	$tables = $controller->getCleanableTables ();
 	$canCleanLogFolder = $controller->canCleanLogDir ();
 	$canCleanTmpFolder = $controller->canCleanTmpDir ();
+	$crapFilesCount = $controller->getCrapFilesCount ();
 	?>
 <form action="index.php?action=cleanup" method="post">
 <?php csrf_token_html();?>
@@ -44,6 +45,15 @@ function cleanup_admin() {
 					id="c_tmp_files" name="tmp_files" value="1" checked></td>
 				<td><label for="c_tmp_files">tmp_files</label></td>
 				<td><?php echo $controller->getTmpDirSize();?> MB</td>
+			</tr>
+<?php }?>
+
+<?php if($crapFilesCount){?>
+<tr>
+				<td style="text-align: center"><input type="checkbox"
+					id="c_crap_files" name="crap_files" value="1" checked></td>
+				<td><label for="c_crap_files">crap_files</label></td>
+				<td><?php echo $controller->getCrapFilesCount();?> <?php translate("files");?></td>
 			</tr>
 <?php }?>
 

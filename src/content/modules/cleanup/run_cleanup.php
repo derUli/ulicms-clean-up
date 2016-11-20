@@ -9,6 +9,7 @@ if ($acl->hasPermission ( "cleanup" )) {
 		foreach ( $_POST ["clean_tables"] as $table ) {
 			$controller->cleanTable ( $table );
 			$tname = Template::getEscape ( $table );
+			$crapFiles = $controller->getAllCrapFiles ();
 			?>
 <p><?php translate("TRUNCATE_TABLE_X" , array("%x" => $tname));?></p>
 <?php }}?>
@@ -29,6 +30,15 @@ if ($acl->hasPermission ( "cleanup" )) {
 <p><?php translate("TRUNCATE_TMP_FILES");?></p>
 <?php }?>
 
+<?php foreach($crapFiles as $file){?>
+<p><?php translate("DELETE_FILE_X", array("%x" => Template::getEscape($file)))?>
+ <?php if(unlink($file)){?>
+ <span style="color: green"><?php translate("x_ok");?></span>
+ <?php } else{?>
+ <span style="color: red"><?php translate("x_failed");?></span>
+ <?php }?>
+</p>
+<?php }?>
 
 <p><?php translate("cleaning_finished");?></p>
 <p>
