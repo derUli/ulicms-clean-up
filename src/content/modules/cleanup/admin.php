@@ -5,6 +5,9 @@ function cleanup_admin() {
 	$controller = new CleanUpController ();
 	$tables = $controller->getCleanableTables ();
 	$canCleanLogFolder = $controller->canCleanLogDir ();
+	$canCleanTmpFolder = $controller->canCleanTmpDir ();
+	$crapFilesCount = $controller->getCrapFilesCount ();
+	$mysql_optimize_available = in_array ( "mysql_optimize", getAllModules () );
 	?>
 <form action="index.php?action=cleanup" method="post">
 <?php csrf_token_html();?>
@@ -22,7 +25,8 @@ function cleanup_admin() {
 				<td style="text-align: center"><input type="checkbox"
 					id="c_<?php Template::escape($table->TABLE_NAME)?>"
 					name="clean_tables[]"
-					value="<?php Template::escape($table->TABLE_NAME);?>" checked></td>
+					value="<?php Template::escape($table->TABLE_NAME);?>"
+					<?php if($table->TABLE_NAME != tbname("history")) echo "checked";?>></td>
 				<td><label for="c_<?php Template::escape($table->TABLE_NAME)?>"><?php Template::escape($table->TABLE_NAME);?></label></td>
 				<td><?php Template::escape($table->size_in_mb);?> MB</td>
 			</tr>
@@ -35,6 +39,36 @@ function cleanup_admin() {
 				<td><?php echo $controller->getLogDirSize();?> MB</td>
 			</tr>
 <?php }?>
+
+
+<?php if($canCleanTmpFolder){?>
+<tr>
+				<td style="text-align: center"><input type="checkbox"
+					id="c_tmp_files" name="tmp_files" value="1" checked></td>
+				<td><label for="c_tmp_files">tmp_files</label></td>
+				<td><?php echo $controller->getTmpDirSize();?> MB</td>
+			</tr>
+<?php }?>
+
+<?php if($crapFilesCount){?>
+<tr>
+				<td style="text-align: center"><input type="checkbox"
+					id="c_crap_files" name="crap_files" value="1" checked></td>
+				<td><label for="c_crap_files">crap_files</label></td>
+				<td><?php echo $controller->getCrapFilesCount();?> <?php translate("files");?></td>
+			</tr>
+<?php }?>
+<?php
+
+	if ($mysql_optimize_available) {
+		?>
+		<tr>
+				<td style="text-align: center"><input type="checkbox"
+					id="optimize_db" name="optimize_db" value="1" checked></td>
+				<td><label for="optimize_db">optimize_db</label></td>
+				<td></td>
+			</tr>
+	<?php }?>
 </tbody>
 	</table>
 	<p>
