@@ -14,8 +14,7 @@ if ($acl->hasPermission ( "cleanup" )) {
 <?php }}?>
 <?php
 
-	
-if (isset ( $_POST ["log_files"] )) {
+	if (isset ( $_POST ["log_files"] )) {
 		$controller->cleanLogDir ();
 		?>
 
