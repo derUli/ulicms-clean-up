@@ -13,6 +13,7 @@ if ($acl->hasPermission ( "cleanup" )) {
 			$crapFiles = $controller->getAllCrapFiles ();
 			?>
 <p><?php translate("TRUNCATE_TABLE_X" , array("%x" => $tname));?></p>
+<?php fcflush();?>
 <?php }}?>
 <?php
 
@@ -21,6 +22,7 @@ if ($acl->hasPermission ( "cleanup" )) {
 		?>
 
 <p><?php translate("TRUNCATE_LOG_FILES");?></p>
+<?php fcflush();?>
 <?php }?>
 <?php
 
@@ -29,6 +31,7 @@ if ($acl->hasPermission ( "cleanup" )) {
 		?>
 
 <p><?php translate("TRUNCATE_TMP_FILES");?></p>
+<?php fcflush();?>
 <?php }?>
 
 <?php foreach($crapFiles as $file){?>
@@ -39,9 +42,12 @@ if ($acl->hasPermission ( "cleanup" )) {
  <span style="color: red"><?php translate("x_failed");?></span>
  <?php }?>
 </p>
+<?php fcflush();?>
 <?php }?>
 
+<?php fcflush();?>
 <?php
+
 	if ($mysql_optimize_available and isset ( $_POST ["optimize_db"] )) {
 		include_once getModulePath ( "mysql_optimize" ) . "mysql_optimize_lib.php";
 		$cfg = new config ();
@@ -49,6 +55,7 @@ if ($acl->hasPermission ( "cleanup" )) {
 	}
 	?>
 
+<?php fcflush();?>
 <p><?php translate("cleaning_finished");?></p>
 <p>
 	<a href="<?php echo ModuleHelper::buildAdminURL("cleanup");?>">[<?php translate("cleanup_ok")?>]</a>
