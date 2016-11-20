@@ -44,6 +44,18 @@ ORDER BY data_length DESC;";
 	private function getLogDirSizeInByte() {
 		return ($this->getDirSize ( ULICMS_ROOT . "/content/log" ));
 	}
+	public function canCleanTmpDir() {
+		return ($this->getTmpDirSizeInByte () > 0);
+	}
+	public function cleanTmpDir() {
+		return SureRemoveDir ( ULICMS_ROOT . "/content/tmp", false );
+	}
+	public function getTmpDirSize() {
+		return round ( $this->getDirSize ( ULICMS_ROOT . "/content/tmp" ) / 1024 / 1024, 2 );
+	}
+	private function getTmpDirSizeInByte() {
+		return ($this->getDirSize ( ULICMS_ROOT . "/content/tmp" ));
+	}
 	private function getDirSize($dir_name) {
 		$dir_size = 0;
 		if (is_dir ( $dir_name )) {

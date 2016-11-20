@@ -20,6 +20,16 @@ if ($acl->hasPermission ( "cleanup" )) {
 
 <p><?php translate("TRUNCATE_LOG_FILES");?></p>
 <?php }?>
+<?php
+
+	if (isset ( $_POST ["tmp_files"] )) {
+		$controller->cleanTmpDir ();
+		?>
+
+<p><?php translate("TRUNCATE_TMP_FILES");?></p>
+<?php }?>
+
+
 <p><?php translate("cleaning_finished");?></p>
 <p>
 	<a href="<?php echo ModuleHelper::buildAdminURL("cleanup");?>">[<?php translate("cleanup_ok")?>]</a>
