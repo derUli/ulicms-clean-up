@@ -38,8 +38,14 @@ ORDER BY data_length DESC;";
 	public function cleanLogDir() {
 		return SureRemoveDir ( ULICMS_ROOT . "/content/log", false );
 	}
+	public function cleanThumbsDir() {
+		return SureRemoveDir ( ULICMS_ROOT . "/content/.thumbs", false );
+	}
 	public function getLogDirSize() {
 		return round ( $this->getDirSize ( ULICMS_ROOT . "/content/log" ) / 1024 / 1024, 2 );
+	}
+	public function getThumbsDirSize() {
+		return round ( $this->getDirSize ( ULICMS_ROOT . "/content/.thumbs" ) / 1024 / 1024, 2 );
 	}
 	public function getCrapFilesCount() {
 		return count ( $this->getAllCrapFiles () );

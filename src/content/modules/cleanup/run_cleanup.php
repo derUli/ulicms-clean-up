@@ -34,6 +34,16 @@ if ($acl->hasPermission ( "cleanup" )) {
 <?php fcflush();?>
 <?php }?>
 
+
+<?php
+	
+	if (isset ( $_POST ["thumbs_dir"] )) {
+		$controller->cleanThumbsDir ();
+		?>
+
+<p><?php translate("TRUNCATE_THUMBNAIL_FILES");?></p>
+<?php fcflush();?>
+<?php }?>
 <?php foreach($crapFiles as $file){?>
 <p><?php translate("DELETE_FILE_X", array("%x" => Template::getEscape($file)))?>
  <?php if(unlink($file)){?>

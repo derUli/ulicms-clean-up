@@ -7,6 +7,7 @@ function cleanup_admin() {
 	$canCleanLogFolder = $controller->canCleanLogDir ();
 	$canCleanTmpFolder = $controller->canCleanTmpDir ();
 	$crapFilesCount = $controller->getCrapFilesCount ();
+	$thumbsDirSize = $controller->getThumbsDirSize ();
 	$mysql_optimize_available = in_array ( "mysql_optimize", getAllModules () );
 	?>
 <form action="index.php?action=cleanup" method="post">
@@ -56,6 +57,14 @@ function cleanup_admin() {
 					id="c_crap_files" name="crap_files" value="1" checked></td>
 				<td><label for="c_crap_files">crap_files</label></td>
 				<td><?php echo $controller->getCrapFilesCount();?> <?php translate("files");?></td>
+			</tr>
+<?php }?>
+<?php if($thumbsDirSize > 0){?>
+<tr>
+				<td style="text-align: center"><input type="checkbox"
+					id="c_thumbs_dir" name="thumbs_dir" value="1" checked></td>
+				<td><label for="c_thumbs_dir">thumbs_dir</label></td>
+				<td><?php echo $controller->getThumbsDirSize();?> MB</td>
 			</tr>
 <?php }?>
 <?php
