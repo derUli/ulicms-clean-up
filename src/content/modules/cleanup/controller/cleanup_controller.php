@@ -34,6 +34,8 @@ ORDER BY data_length DESC;";
 	 */
 	public function canCleanLogDir() {
 		return ($this->getLogDirSizeInByte () > 0);
+	}	public function canCleanCacheDir() {
+		return ($this->getCacheDirSize() > 0);
 	}
 	public function cleanLogDir() {
 		return SureRemoveDir ( ULICMS_ROOT . "/content/log", false );
@@ -75,8 +77,14 @@ ORDER BY data_length DESC;";
 	public function cleanTmpDir() {
 		return SureRemoveDir ( ULICMS_ROOT . "/content/tmp", false );
 	}
+	public function cleanCacheDir() {
+		clearCache ();
+	}
 	public function getTmpDirSize() {
 		return round ( $this->getDirSize ( ULICMS_ROOT . "/content/tmp" ) / 1024 / 1024, 2 );
+	}
+	public function getCacheDirSize() {
+		return round ( $this->getDirSize ( ULICMS_ROOT . "/content/cache" ) / 1024 / 1024, 2 );
 	}
 	private function getTmpDirSizeInByte() {
 		return ($this->getDirSize ( ULICMS_ROOT . "/content/tmp" ));

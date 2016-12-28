@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
-	<buildpathentry kind="src" path="content/modules/cleanup"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry external="true" kind="lib" path="/home/ulrich1992/Dokumente/ulicms/ulicms"/>
+	<buildpathentry kind="src" path="content/modules/cleanup"/>
 </buildpath>

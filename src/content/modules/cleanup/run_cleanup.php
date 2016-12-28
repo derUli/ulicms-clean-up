@@ -33,7 +33,15 @@ if ($acl->hasPermission ( "cleanup" )) {
 <p><?php translate("TRUNCATE_TMP_FILES");?></p>
 <?php fcflush();?>
 <?php }?>
+<?php
 
+	if (isset ( $_POST ["cache_files"] )) {
+		$controller->cleanCacheDir ();
+		?>
+
+<p><?php translate("CLEAR_CACHE");?></p>
+<?php fcflush();?>
+<?php }?>
 
 <?php
 	
