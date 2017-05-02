@@ -6,7 +6,7 @@ class CleanUpController {
   TABLE_NAME, table_rows, data_length, index_length,  
   round(((data_length + index_length) / 1024 / 1024),2) as size_in_mb
 FROM information_schema.TABLES 
-WHERE TABLE_NAME in ('{prefix}log', '{prefix}history', '{prefix}mails') and TABLE_TYPE='BASE TABLE' and data_length + index_length > 0
+WHERE TABLE_NAME in ('{prefix}log', '{prefix}history', '{prefix}mails', '{prefix}peak_memory_usage') and TABLE_TYPE='BASE TABLE' and data_length + index_length > 0
 ORDER BY data_length DESC;";
 		$query = Database::query ( $sql, true );
 		while ( $row = Database::fetchObject ( $query ) ) {
@@ -18,7 +18,8 @@ ORDER BY data_length DESC;";
 		return array (
 				tbname ( "log" ),
 				tbname ( "history" ),
-				tbname ( "mails" ) 
+				tbname ( "mails" ),
+				tbname ( "peak_memory_usage" ) 
 		);
 	}
 	public function cleanTable($table) {
@@ -34,8 +35,9 @@ ORDER BY data_length DESC;";
 	 */
 	public function canCleanLogDir() {
 		return ($this->getLogDirSizeInByte () > 0);
-	}	public function canCleanCacheDir() {
-		return ($this->getCacheDirSize() > 0);
+	}
+	public function canCleanCacheDir() {
+		return ($this->getCacheDirSize () > 0);
 	}
 	public function cleanLogDir() {
 		return SureRemoveDir ( ULICMS_ROOT . "/content/log", false );

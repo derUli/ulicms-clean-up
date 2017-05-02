@@ -1,6 +1,6 @@
 {
   "source" : "extend",
-	"version" : "2.0.1",
+	"version" : "2.1",
 	"embed" : false,
 	"custom_acl" : ["cleanup"],
 	"admin_permission" : "cleanup"
