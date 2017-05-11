@@ -12,6 +12,15 @@ function cleanup_admin() {
 	$mysql_optimize_available = in_array ( "mysql_optimize", getAllModules () );
 	
 	?>
+
+<div class="row">
+	<div class="col-xs-6"></div>
+	<div class="col-xs-6 text-right">
+		<a href="<?php echo ModuleHelper::buildActionURL("unused_modules");?>"
+			class="btn btn-default"><?php translate("check_for_unused_modules");?></a>
+	</div>
+</div>
+
 <form action="index.php?action=cleanup" method="post">
 <?php csrf_token_html();?>
 <table class="tablesorter">

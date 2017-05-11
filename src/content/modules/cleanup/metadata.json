@@ -1,7 +1,16 @@
 {
   "source" : "extend",
-	"version" : "2.1",
+	"version" : "2.2",
 	"embed" : false,
 	"custom_acl" : ["cleanup"],
-	"admin_permission" : "cleanup"
+	"admin_permission" : "cleanup",
+	"controllers" : {
+		"RemoveUnusedModulesController" : "controller/remove_unused_modules_controller.php"
+	},
+	"actions" : {
+		"unused_modules" : "templates/unused_modules.php"
+	},
+	"action_controllers" : {
+		"unused_modules" : "RemoveUnusedModulesController"
+	}
 }

@@ -10,3 +10,4 @@ define ( "TRANSLATION_DELETE_FILE_X", "Lösche Datei %x" );
 define ( "TRANSLATION_X_FAILED", "[Fehlgeschlagen]" );
 define ( "TRANSLATION_X_OK", "[OK]" );
 define ( "TRANSLATION_CLEANUP_OK", "OK" );
+define ( "TRANSLATION_CHECK_FOR_UNUSED_MODULES", "Nach unbenutzten Modulen suchen" );
