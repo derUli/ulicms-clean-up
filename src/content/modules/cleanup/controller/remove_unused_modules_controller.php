@@ -14,7 +14,7 @@ class RemoveUnusedModulesController extends Controller {
 		$result = array ();
 		$modules = ModuleHelper::getAllEmbedModules ();
 		for($i = 0; $i < count ( $modules ); $i ++) {
-			if (! $this->isUnUsed ( $modules [$i] )) {
+			if ($this->isUnUsed ( $modules [$i] )) {
 				$result [] = $modules [$i];
 			}
 		}
