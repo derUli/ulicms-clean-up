@@ -5,6 +5,7 @@ if ($acl->hasPermission ( "cleanup" )) {
 	$modules = $controller->getUnusedEmbedModules ();
 	if (count ( $modules ) > 0) {
 		?>
+<p><?php translate("unused_modules_help");?></p>
 <ol>
 		<?php for($i=0; $i < count($modules); $i++){?>
 		<li><?php Template::escape($modules[$i]);?> <?php echo getModuleMeta($modules[$i], "version");?></li>
