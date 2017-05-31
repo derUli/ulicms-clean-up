@@ -10,3 +10,7 @@ define ( "TRANSLATION_DELETE_FILE_X", "Delete file %x" );
 define ( "TRANSLATION_CLEANUP_OK", "OK" );
 define ( "TRANSLATION_X_FAILED", "[Failed]" );
 define ( "TRANSLATION_X_OK", "[OK]" );
+define ( "TRANSLATION_CHECK_FOR_UNUSED_MODULES", "Check for unused modules" );
+
+define ( "TRANSLATION_UNUSED_MODULES_HELP", "Cleanup attempts to determine which of the installed modules can no longer be used and removed.
+Please note that the following list is only a recommendation and there is no guarantee. Please check whether a module is really no longer needed before uninstalling i" );
