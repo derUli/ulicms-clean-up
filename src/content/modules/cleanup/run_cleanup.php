@@ -16,7 +16,6 @@ if ($acl->hasPermission ( "cleanup" )) {
 <?php fcflush();?>
 <?php }}?>
 <?php
-
 	if (isset ( $_POST ["log_files"] )) {
 		$controller->cleanLogDir ();
 		?>
@@ -25,7 +24,6 @@ if ($acl->hasPermission ( "cleanup" )) {
 <?php fcflush();?>
 <?php }?>
 <?php
-
 	if (isset ( $_POST ["tmp_files"] )) {
 		$controller->cleanTmpDir ();
 		?>
@@ -34,7 +32,6 @@ if ($acl->hasPermission ( "cleanup" )) {
 <?php fcflush();?>
 <?php }?>
 <?php
-
 	if (isset ( $_POST ["cache_files"] )) {
 		$controller->cleanCacheDir ();
 		?>
@@ -44,7 +41,6 @@ if ($acl->hasPermission ( "cleanup" )) {
 <?php }?>
 
 <?php
-	
 	if (isset ( $_POST ["thumbs_dir"] )) {
 		$controller->cleanThumbsDir ();
 		?>
@@ -65,7 +61,6 @@ if ($acl->hasPermission ( "cleanup" )) {
 
 <?php fcflush();?>
 <?php
-
 	if ($mysql_optimize_available and isset ( $_POST ["optimize_db"] )) {
 		include_once getModulePath ( "mysql_optimize" ) . "mysql_optimize_lib.php";
 		$cfg = new config ();
