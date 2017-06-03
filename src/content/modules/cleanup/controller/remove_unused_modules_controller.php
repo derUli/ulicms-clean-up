@@ -4,7 +4,6 @@ class RemoveUnusedModulesController extends Controller {
 		$unusedModules = array ();
 		$pages = ContentFactory::getAll ();
 		$embedModules = ModuleHelper::getAllEmbedModules ();
-		
 		foreach ( $embedModules as $module ) {
 			$unused = true;
 			foreach ( $pages as $page ) {
@@ -19,5 +18,3 @@ class RemoveUnusedModulesController extends Controller {
 		return $unusedModules;
 	}
 }
-
-	
