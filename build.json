@@ -1,6 +1,6 @@
 {
    "id" : "cleanup",
-   "version" : "2.2",
+   "version" : "2.4",
    "description" : "Clean up your Installation",
    "categories" : ["maintenance", "admin"],
    "compatible_from" : "2017.1",
