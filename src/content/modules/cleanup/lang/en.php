@@ -16,3 +16,4 @@ define("TRANSLATION_UNUSED_MODULES_HELP", "Cleanup attempts to determine which o
 Please note that the following list is only a recommendation and there is no guarantee. Please check whether a module is really no longer needed before uninstalling it.");
 define("TRANSLATION_NO_UNUSED_MODULES_FOUND", "No unused modules found.");
 define("TRANSLATION_DISABLE_MODULES", "Module deaktivieren");
+define("TRANSLATION_DISABLE_MODULES_HELP", "The more modules are activated, the slower your website becomes. In this dialog, you can disable the modules that you are currently not using. The following is a list of all installed modules.");
