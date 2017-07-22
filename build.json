@@ -1,8 +1,8 @@
 {
    "id" : "cleanup",
-   "version" : "2.4",
+   "version" : "3.0",
    "description" : "Clean up your Installation",
    "categories" : ["maintenance", "admin"],
-   "compatible_from" : "2017.1",
+   "compatible_from" : "2017.3.15",
    "dependencies" : ["mysql_optimize"]
 }

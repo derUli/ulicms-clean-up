@@ -1,25 +1,39 @@
 <?php
-define ( "MODULE_ADMIN_HEADLINE", "Clean Up" );
-define ( "MODULE_ADMIN_REQUIRED_PERMISSION", "cleanup" );
-function cleanup_admin() {
-	$controller = new CleanUpController ();
-	$tables = $controller->getCleanableTables ();
-	$canCleanLogFolder = $controller->canCleanLogDir ();
-	$canCleanTmpFolder = $controller->canCleanTmpDir ();
-	$crapFilesCount = $controller->getCrapFilesCount ();
-	$thumbsDirSize = $controller->getThumbsDirSize ();
-	$cacheDirSize = $controller->getCacheDirSize ();
-	$mysql_optimize_available = in_array ( "mysql_optimize", getAllModules () );
-	
-	?>
+define("MODULE_ADMIN_HEADLINE", "Clean Up");
+define("MODULE_ADMIN_REQUIRED_PERMISSION", "cleanup");
+
+function cleanup_admin()
+{
+    $controller = new CleanUpController();
+    $tables = $controller->getCleanableTables();
+    $canCleanLogFolder = $controller->canCleanLogDir();
+    $canCleanTmpFolder = $controller->canCleanTmpDir();
+    $crapFilesCount = $controller->getCrapFilesCount();
+    $thumbsDirSize = $controller->getThumbsDirSize();
+    $cacheDirSize = $controller->getCacheDirSize();
+    $mysql_optimize_available = in_array("mysql_optimize", getAllModules());
+    
+    ?>
+<?php if(Request::getVar("save")){?>
+<div class="alert alert-success alert-dismissable fade in">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<?php translate("changes_was_saved")?>
+		</div>
+<?php }?>
+
 
 <div class="row">
-	<div class="col-xs-6"></div>
+	<div class="col-xs-6">
+		<a
+			href="<?php echo ModuleHelper::buildActionURL("disable_modules");?>"
+			class="btn btn-default"><?php translate("disable_modules");?></a>
+	</div>
 	<div class="col-xs-6 text-right">
 		<a href="<?php echo ModuleHelper::buildActionURL("unused_modules");?>"
 			class="btn btn-default"><?php translate("check_for_unused_modules");?></a>
 	</div>
 </div>
+
 
 <form action="index.php?action=cleanup" method="post">
 <?php csrf_token_html();?>
@@ -88,9 +102,9 @@ function cleanup_admin() {
 			</tr>
 <?php }?>
 <?php
-	
-	if ($mysql_optimize_available) {
-		?>
+    
+    if ($mysql_optimize_available) {
+        ?>
 		<tr>
 				<td style="text-align: center"><input type="checkbox"
 					id="optimize_db" name="optimize_db" value="1" checked></td>
