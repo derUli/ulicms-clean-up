@@ -1,16 +1,24 @@
 {
-  "source" : "extend",
-	"version" : "2.4",
-	"embed" : false,
-	"custom_acl" : ["cleanup"],
-	"admin_permission" : "cleanup",
-	"controllers" : {
-		"RemoveUnusedModulesController" : "controller/remove_unused_modules_controller.php"
+	"source": "extend",
+	"version": "3.0",
+	"embed": false,
+	"custom_acl": [
+		"cleanup"
+	],
+	"admin_permission": "cleanup",
+	"controllers": {
+		"RemoveUnusedModulesController": "controller/remove_unused_modules_controller.php",
+		"EnDisModsController": "controller/en_dis_mods_controller.php"
 	},
-	"actions" : {
-		"unused_modules" : "templates/unused_modules.php"
+	"actions": {
+		"unused_modules": "templates/unused_modules.php",
+		"disable_modules": "templates/disable_modules.php"
 	},
-	"action_controllers" : {
-		"unused_modules" : "RemoveUnusedModulesController"
+	"action_controllers": {
+		"unused_modules": "RemoveUnusedModulesController",
+		"disable_modules": "EnDisModsController"
+	},
+	"controller_function_permissions": {
+		"EnDisModsController::save": "cleanup"
 	}
 }
