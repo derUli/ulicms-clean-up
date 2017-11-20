@@ -16,3 +16,4 @@ define("TRANSLATION_UNUSED_MODULES_HELP", "cleanup versucht nun zu ermitteln, we
 define("TRANSLATION_NO_UNUSED_MODULES_FOUND", "Keine unbenutzten Module gefunden.");
 define("TRANSLATION_DISABLE_MODULES", "Module deaktivieren");
 define("TRANSLATION_DISABLE_MODULES_HELP", "Je mehr Module aktiviert sind, desto langsamer wird Ihre Webseite. Sie können in diesem Dialog, die Module, die Sie derzeit nicht verwenden deaktivieren. Im folgenden eine Liste aller installierten Module.");
+define("TRANSLATION_DELETE_OLD_PASSWORD_RESET_TOKENS", "Lösche Passwort Reset Tokens, die älter als 3 Tage sind");

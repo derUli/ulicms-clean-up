@@ -17,3 +17,4 @@ Please note that the following list is only a recommendation and there is no gua
 define("TRANSLATION_NO_UNUSED_MODULES_FOUND", "No unused modules found.");
 define("TRANSLATION_DISABLE_MODULES", "Disable Modules");
 define("TRANSLATION_DISABLE_MODULES_HELP", "The more modules are activated, the slower your website becomes. In this dialog, you can disable the modules that you are currently not using. The following is a list of all installed modules.");
+define("TRANSLATION_DELETE_OLD_PASSWORD_RESET_TOKENS", "Delete Password Reset Tokens, older than 3 days");
