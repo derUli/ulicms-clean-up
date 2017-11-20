@@ -142,7 +142,7 @@ ORDER BY data_length DESC;";
 
     public function cleanOldPasswordResetToken()
     {
-        Database::pQuery("delete from  from {prefix}password_reset where datediff(CURRENT_TIMESTAMP, date) >=?", array(
+        Database::pQuery("delete from {prefix}password_reset where datediff(CURRENT_TIMESTAMP, date) >=?", array(
             3
         ), true);
     }
