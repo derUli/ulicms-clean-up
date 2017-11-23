@@ -35,7 +35,6 @@ function cleanup_admin()
 	</div>
 </div>
 
-
 <form action="index.php?action=cleanup" method="post">
 <?php csrf_token_html();?>
 <table class="tablesorter">
@@ -105,7 +104,8 @@ function cleanup_admin()
 <?php if($cleanablePasswordResetTokens){?>
 <tr>
 				<td style="text-align: center"><input type="checkbox"
-					id="c_password_reset_tokens" name="old_password_reset_tokens" value="1" checked></td>
+					id="c_password_reset_tokens" name="old_password_reset_tokens"
+					value="1" checked></td>
 				<td><label for="c_password_reset_tokens">old_password_reset_tokens</label></td>
 				<td><?php echo $cleanablePasswordResetTokens;?> Tokens</td>
 			</tr>
@@ -124,7 +124,7 @@ function cleanup_admin()
 </tbody>
 	</table>
 	<p>
-		<input name="submit" type="submit" value="<?php translate("clean");?>">
+		<button name="submit" class="btn btn-success" type="submit"><?php translate("clean");?></button>
 	</p>
 </form>
 <?php

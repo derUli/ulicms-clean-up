@@ -36,7 +36,7 @@ if ($acl->hasPermission("cleanup")) {
 	</tbody>
 </table>
 <p>
-	<input type="submit" value="<?php translate("save_changes")?>">
+	<button type="submit" class="btn btn-danger"><?php translate("save_changes")?></button>
 </p>
 
 <?php csrf_token_html();?>
