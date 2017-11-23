@@ -48,6 +48,10 @@ if ($acl->hasPermission("cleanup")) {
 <p><?php translate("TRUNCATE_THUMBNAIL_FILES");?></p>
 <?php fcflush();?>
 <?php }?>
+<?php if(isset($_POST["old_password_reset_tokens"])){?>
+<?php $controller->cleanOldPasswordResetToken();?>
+<p><?php translate("delete_old_password_reset_tokens")?></p>
+<?php }?>
 <?php foreach($crapFiles as $file){?>
 <p><?php translate("DELETE_FILE_X", array("%x" => Template::getEscape($file)))?>
  <?php if(unlink($file)){?>

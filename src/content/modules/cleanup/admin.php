@@ -11,6 +11,7 @@ function cleanup_admin()
     $crapFilesCount = $controller->getCrapFilesCount();
     $thumbsDirSize = $controller->getThumbsDirSize();
     $cacheDirSize = $controller->getCacheDirSize();
+    $cleanablePasswordResetTokens = $controller->getCleanablePasswordResetTokens();
     $mysql_optimize_available = in_array("mysql_optimize", getAllModules());
     
     ?>
@@ -99,6 +100,14 @@ function cleanup_admin()
 					id="c_thumbs_dir" name="thumbs_dir" value="1" checked></td>
 				<td><label for="c_thumbs_dir">thumbs_dir</label></td>
 				<td><?php echo $controller->getThumbsDirSize();?> MB</td>
+			</tr>
+<?php }?>
+<?php if($cleanablePasswordResetTokens){?>
+<tr>
+				<td style="text-align: center"><input type="checkbox"
+					id="c_password_reset_tokens" name="old_password_reset_tokens" value="1" checked></td>
+				<td><label for="c_password_reset_tokens">old_password_reset_tokens</label></td>
+				<td><?php echo $cleanablePasswordResetTokens;?> Tokens</td>
 			</tr>
 <?php }?>
 <?php

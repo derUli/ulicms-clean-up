@@ -48,6 +48,15 @@ ORDER BY data_length DESC;";
         return ($this->getLogDirSizeInByte() > 0);
     }
 
+    public function getCleanablePasswordResetTokens()
+    {
+        $query = Database::pQuery("select count(token) as amount from {prefix}password_reset where datediff(CURRENT_TIMESTAMP, date) >= ?", array(
+            3
+        ), true);
+        $result = Database::fetchObject($query);
+        return $result->amount;
+    }
+
     public function canCleanCacheDir()
     {
         return ($this->getCacheDirSize() > 0);
@@ -129,6 +138,13 @@ ORDER BY data_length DESC;";
     private function getTmpDirSizeInByte()
     {
         return ($this->getDirSize(ULICMS_ROOT . "/content/tmp"));
+    }
+
+    public function cleanOldPasswordResetToken()
+    {
+        Database::pQuery("delete from {prefix}password_reset where datediff(CURRENT_TIMESTAMP, date) >=?", array(
+            3
+        ), true);
     }
 
     private function getDirSize($dir_name)
