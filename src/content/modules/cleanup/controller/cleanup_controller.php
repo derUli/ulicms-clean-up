@@ -64,22 +64,22 @@ ORDER BY data_length DESC;";
 
     public function cleanLogDir()
     {
-        return SureRemoveDir(ULICMS_ROOT . "/content/log", false);
+        return SureRemoveDir(ULICMS_DATA_STORAGE_ROOT . "/content/log", false);
     }
 
     public function cleanThumbsDir()
     {
-        return SureRemoveDir(ULICMS_ROOT . "/content/.thumbs", false);
+        return SureRemoveDir(ULICMS_DATA_STORAGE_ROOT . "/content/.thumbs", false);
     }
 
     public function getLogDirSize()
     {
-        return round($this->getDirSize(ULICMS_ROOT . "/content/log") / 1024 / 1024, 2);
+        return round($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/log") / 1024 / 1024, 2);
     }
 
     public function getThumbsDirSize()
     {
-        return round($this->getDirSize(ULICMS_ROOT . "/content/.thumbs") / 1024 / 1024, 2);
+        return round($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/.thumbs") / 1024 / 1024, 2);
     }
 
     public function getCrapFilesCount()
@@ -95,7 +95,7 @@ ORDER BY data_length DESC;";
             'Thumbs.db'
         ); // windows specific
         
-        $files = find_all_files(ULICMS_ROOT);
+        $files = find_all_files(ULICMS_DATA_STORAGE_ROOT);
         $crapFiles = array();
         foreach ($files as $file) {
             if (in_array(basename($file), $annoyingFilenames)) {
@@ -107,7 +107,7 @@ ORDER BY data_length DESC;";
 
     private function getLogDirSizeInByte()
     {
-        return ($this->getDirSize(ULICMS_ROOT . "/content/log"));
+        return ($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/log"));
     }
 
     public function canCleanTmpDir()
@@ -117,7 +117,7 @@ ORDER BY data_length DESC;";
 
     public function cleanTmpDir()
     {
-        return SureRemoveDir(ULICMS_ROOT . "/content/tmp", false);
+        return SureRemoveDir(ULICMS_DATA_STORAGE_ROOT . "/content/tmp", false);
     }
 
     public function cleanCacheDir()
@@ -127,17 +127,17 @@ ORDER BY data_length DESC;";
 
     public function getTmpDirSize()
     {
-        return round($this->getDirSize(ULICMS_ROOT . "/content/tmp") / 1024 / 1024, 2);
+        return round($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/tmp") / 1024 / 1024, 2);
     }
 
     public function getCacheDirSize()
     {
-        return round($this->getDirSize(ULICMS_ROOT . "/content/cache") / 1024 / 1024, 2);
+        return round($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/cache") / 1024 / 1024, 2);
     }
 
     private function getTmpDirSizeInByte()
     {
-        return ($this->getDirSize(ULICMS_ROOT . "/content/tmp"));
+        return ($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/tmp"));
     }
 
     public function cleanOldPasswordResetToken()
