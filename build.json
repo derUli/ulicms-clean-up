@@ -1,6 +1,6 @@
 {
    "id" : "cleanup",
-   "version" : "3.1",
+   "version" : "3.2",
    "description" : "Clean up your Installation",
    "categories" : ["maintenance", "admin"],
    "compatible_from" : "2017.3.15",

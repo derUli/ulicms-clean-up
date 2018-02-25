@@ -66,7 +66,7 @@ if ($acl->hasPermission("cleanup")) {
 <?php fcflush();?>
 <?php
     if ($mysql_optimize_available and isset($_POST["optimize_db"])) {
-        include_once getModulePath("mysql_optimize") . "mysql_optimize_lib.php";
+        include_once getModulePath("mysql_optimize", true) . "mysql_optimize_lib.php";
         $cfg = new config();
         db_optimize($cfg->db_database);
     }

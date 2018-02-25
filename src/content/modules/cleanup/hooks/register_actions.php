@@ -1,4 +1,4 @@
 <?php
-include_once getModulePath ( "cleanup" ) . "controller/cleanup_controller.php";
+include_once getModulePath ( "cleanup", true ) . "controller/cleanup_controller.php";
 global $actions;
-$actions ["cleanup"] = getModulePath ( "cleanup" ) . "run_cleanup.php";
+$actions ["cleanup"] = getModulePath ( "cleanup", true ) . "run_cleanup.php";
