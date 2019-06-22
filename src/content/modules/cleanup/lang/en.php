@@ -1,20 +1,21 @@
 <?php
-define("TRANSLATION_OBJECT", "Object");
-define("TRANSLATION_CLEAN", "Clean");
-define("TRANSLATION_TRUNCATE_TABLE_X", "Truncate Table %x");
-define("TRANSLATION_TRUNCATE_LOG_FILES", "Delete log files");
-define("TRANSLATION_TRUNCATE_TMP_FILES", "Delete temp files");
-define("TRANSLATION_TRUNCATE_THUMBNAIL_FILES", "Delete thumbnail files");
-define("TRANSLATION_CLEANING_FINISHED", "Cleaning finished");
-define("TRANSLATION_DELETE_FILE_X", "Delete file %x");
-define("TRANSLATION_CLEANUP_OK", "OK");
-define("TRANSLATION_X_FAILED", "[Failed]");
-define("TRANSLATION_X_OK", "[OK]");
-define("TRANSLATION_CHECK_FOR_UNUSED_MODULES", "Check for unused modules");
 
-define("TRANSLATION_UNUSED_MODULES_HELP", "Cleanup attempts to determine which of the installed modules can no longer be used and removed.
+add_translation("OBJECT", "Object");
+add_translation("CLEAN", "Clean");
+add_translation("TRUNCATE_TABLE_X", "Truncate Table %x");
+add_translation("TRUNCATE_LOG_FILES", "Delete log files");
+add_translation("TRUNCATE_TMP_FILES", "Delete temp files");
+add_translation("TRUNCATE_THUMBNAIL_FILES", "Delete thumbnail files");
+add_translation("CLEANING_FINISHED", "Cleaning finished");
+add_translation("DELETE_FILE_X", "Delete file %x");
+add_translation("CLEANUP_OK", "OK");
+add_translation("X_FAILED", "[Failed]");
+add_translation("X_OK", "[OK]");
+add_translation("CHECK_FOR_UNUSED_MODULES", "Check for unused modules");
+
+add_translation("UNUSED_MODULES_HELP", "Cleanup attempts to determine which of the installed modules can no longer be used and removed.
 Please note that the following list is only a recommendation and there is no guarantee. Please check whether a module is really no longer needed before uninstalling it.");
-define("TRANSLATION_NO_UNUSED_MODULES_FOUND", "No unused modules found.");
-define("TRANSLATION_DISABLE_MODULES", "Disable Modules");
-define("TRANSLATION_DISABLE_MODULES_HELP", "The more modules are activated, the slower your website becomes. In this dialog, you can disable the modules that you are currently not using. The following is a list of all installed modules.");
-define("TRANSLATION_DELETE_OLD_PASSWORD_RESET_TOKENS", "Delete Password Reset Tokens, older than 3 days");
+add_translation("NO_UNUSED_MODULES_FOUND", "No unused modules found.");
+add_translation("DISABLE_MODULES", "Disable Modules");
+add_translation("DISABLE_MODULES_HELP", "The more modules are activated, the slower your website becomes. In this dialog, you can disable the modules that you are currently not using. The following is a list of all installed modules.");
+add_translation("DELETE_OLD_PASSWORD_RESET_TOKENS", "Delete Password Reset Tokens, older than 3 days");

@@ -1,24 +1,35 @@
 {
-	"source": "extend",
-	"version": "3.2",
-	"embed": false,
-	"custom_acl": [
-		"cleanup"
-	],
-	"admin_permission": "cleanup",
-	"controllers": {
-		"RemoveUnusedModulesController": "controller/remove_unused_modules_controller.php",
-		"EnDisModsController": "controller/en_dis_mods_controller.php"
-	},
-	"actions": {
-		"unused_modules": "templates/unused_modules.php",
-		"disable_modules": "templates/disable_modules.php"
-	},
-	"action_controllers": {
-		"unused_modules": "RemoveUnusedModulesController",
-		"disable_modules": "EnDisModsController"
-	},
-	"controller_function_permissions": {
-		"EnDisModsController::save": "cleanup"
-	}
+    "source": "extend",
+    "version": "3.3",
+    "embed": false,
+    "custom_acl": [
+        "cleanup"
+    ],
+    "admin_permission": "cleanup",
+    "controllers": {
+        "RemoveUnusedModulesController": "controllers/remove_unused_modules_controller.php",
+        "EnDisModsController": "controllers/en_dis_mods_controller.php",
+        "CleanUpController": "controllers/cleanup_controller.php"
+    },
+    "main_class": "CleanUpController",
+    "actions": {
+        "unused_modules": "templates/unused_modules.php",
+        "disable_modules": "templates/disable_modules.php",
+        "cleanup": "templates/run_cleanup.php"
+    },
+    "action_permissions": {
+        "unused_modules": "cleanup",
+        "disable_modules": "cleanup",
+        "cleanup": "cleanup"
+    },
+    "action_controllers": {
+        "unused_modules": "RemoveUnusedModulesController",
+        "disable_modules": "EnDisModsController",
+        "cleanup": "CleanUpController"
+    },
+    "controller_function_permissions": {
+        "EnDisModsController::*": "cleanup",
+        "RemoveUnusedModulesController::*": "cleanup",
+        "CleanUpController::*": "cleanup"
+    }
 }

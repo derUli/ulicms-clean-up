@@ -1,10 +1,8 @@
 <?php
 
-class EnDisModsController extends Controller
-{
+class EnDisModsController extends Controller {
 
-    public function save()
-    {
+    public function save() {
         $manager = new ModuleManager();
         $allMods = $manager->getAllModules();
         foreach ($allMods as $module) {
@@ -16,4 +14,5 @@ class EnDisModsController extends Controller
         }
         Request::redirect(ModuleHelper::buildAdminURL("cleanup", "save=1"));
     }
+
 }

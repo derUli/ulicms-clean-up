@@ -1,15 +1,13 @@
 <?php
 
-class CleanUpController
-{
+class CleanUpController extends MainClass {
 
-    public function getCleanableTables()
-    {
+    public function getCleanableTables() {
         $result = array();
-        $sql = "SELECT 
-  TABLE_NAME, table_rows, data_length, index_length,  
+        $sql = "SELECT
+  TABLE_NAME, table_rows, data_length, index_length,
   round(((data_length + index_length) / 1024 / 1024),2) as size_in_mb
-FROM information_schema.TABLES 
+FROM information_schema.TABLES
 WHERE TABLE_NAME in ('{prefix}log', '{prefix}history', '{prefix}mails', '{prefix}peak_memory_usage') and TABLE_TYPE='BASE TABLE' and data_length + index_length > 0
 group by TABLE_NAME
 ORDER BY data_length DESC;";
@@ -20,8 +18,7 @@ ORDER BY data_length DESC;";
         return $result;
     }
 
-    private function getAllowedTables()
-    {
+    private function getAllowedTables() {
         return array(
             tbname("log"),
             tbname("history"),
@@ -30,8 +27,7 @@ ORDER BY data_length DESC;";
         );
     }
 
-    public function cleanTable($table)
-    {
+    public function cleanTable($table) {
         $allowed = $this->getAllowedTables();
         $result = null;
         if (in_array($table, $allowed)) {
@@ -43,58 +39,50 @@ ORDER BY data_length DESC;";
     /*
      * returns the size of all files in log folder in MB
      */
-    public function canCleanLogDir()
-    {
+
+    public function canCleanLogDir() {
         return ($this->getLogDirSizeInByte() > 0);
     }
 
-    public function getCleanablePasswordResetTokens()
-    {
+    public function getCleanablePasswordResetTokens() {
         $query = Database::pQuery("select count(token) as amount from {prefix}password_reset where datediff(CURRENT_TIMESTAMP, date) >= ?", array(
-            3
-        ), true);
+                    3
+                        ), true);
         $result = Database::fetchObject($query);
         return $result->amount;
     }
 
-    public function canCleanCacheDir()
-    {
+    public function canCleanCacheDir() {
         return ($this->getCacheDirSize() > 0);
     }
 
-    public function cleanLogDir()
-    {
+    public function cleanLogDir() {
         return SureRemoveDir(ULICMS_DATA_STORAGE_ROOT . "/content/log", false);
     }
 
-    public function cleanThumbsDir()
-    {
+    public function cleanThumbsDir() {
         return SureRemoveDir(ULICMS_DATA_STORAGE_ROOT . "/content/.thumbs", false);
     }
 
-    public function getLogDirSize()
-    {
+    public function getLogDirSize() {
         return round($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/log") / 1024 / 1024, 2);
     }
 
-    public function getThumbsDirSize()
-    {
+    public function getThumbsDirSize() {
         return round($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/.thumbs") / 1024 / 1024, 2);
     }
 
-    public function getCrapFilesCount()
-    {
+    public function getCrapFilesCount() {
         return count($this->getAllCrapFiles());
     }
 
-    public function getAllCrapFiles()
-    {
+    public function getAllCrapFiles() {
         $annoyingFilenames = array(
             '.DS_Store', // mac specific
             '.localized', // mac specific
             'Thumbs.db'
         ); // windows specific
-        
+
         $files = find_all_files(ULICMS_DATA_STORAGE_ROOT);
         $crapFiles = array();
         foreach ($files as $file) {
@@ -105,50 +93,49 @@ ORDER BY data_length DESC;";
         return $crapFiles;
     }
 
-    private function getLogDirSizeInByte()
-    {
+    private function getLogDirSizeInByte() {
         return ($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/log"));
     }
 
-    public function canCleanTmpDir()
-    {
+    public function canCleanTmpDir() {
         return ($this->getTmpDirSizeInByte() > 0);
     }
 
-    public function cleanTmpDir()
-    {
+    public function cleanTmpDir() {
         return SureRemoveDir(ULICMS_DATA_STORAGE_ROOT . "/content/tmp", false);
     }
 
-    public function cleanCacheDir()
-    {
+    public function cleanCacheDir() {
         clearCache();
     }
 
-    public function getTmpDirSize()
-    {
+    public function getTmpDirSize() {
         return round($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/tmp") / 1024 / 1024, 2);
     }
 
-    public function getCacheDirSize()
-    {
+    public function getCacheDirSize() {
         return round($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/cache") / 1024 / 1024, 2);
     }
 
-    private function getTmpDirSizeInByte()
-    {
+    private function getTmpDirSizeInByte() {
         return ($this->getDirSize(ULICMS_DATA_STORAGE_ROOT . "/content/tmp"));
     }
 
-    public function cleanOldPasswordResetToken()
-    {
+    public function cleanOldPasswordResetToken() {
         Database::pQuery("delete from {prefix}password_reset where datediff(CURRENT_TIMESTAMP, date) >=?", array(
             3
-        ), true);
+                ), true);
     }
 
-    private function getDirSize($dir_name)
-    {
+    public function getSettingsHeadline() {
+        return "Clean Up";
+    }
+
+    public function settings() {
+        return Template::executeModuleTemplate("cleanup", "admin.php");
+    }
+
+    private function getDirSize($dir_name) {
         $dir_size = 0;
         if (is_dir($dir_name)) {
             if ($dh = opendir($dir_name)) {
@@ -168,4 +155,5 @@ ORDER BY data_length DESC;";
         closedir($dh);
         return $dir_size;
     }
+
 }
