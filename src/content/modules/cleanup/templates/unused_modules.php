@@ -1,4 +1,7 @@
 <?php
+
+use function UliCMS\HTML\icon;
+
 $acl = new ACL();
 $controller = ControllerRegistry::get();
 $modules = $controller->getUnusedEmbedModules();
@@ -7,7 +10,7 @@ $modules = $controller->getUnusedEmbedModules();
 <div class="row">
     <div class="col-xs-12">
         <a href="<?php echo ModuleHelper::buildAdminURL("cleanup"); ?>"
-           class="btn btn-default"><?php translate("back"); ?></a>
+           class="btn btn-default"><?php echo icon("fa fa-arrow-left"); ?> <?php translate("back"); ?></a>
     </div>
 </div>
 <p><?php translate("unused_modules_help"); ?></p>

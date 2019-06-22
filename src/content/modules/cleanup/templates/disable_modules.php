@@ -1,4 +1,7 @@
 <?php
+
+use function UliCMS\HTML\icon;
+
 $controller = ControllerRegistry::get();
 $manager = new ModuleManager();
 $allMods = $manager->getAllModules();
@@ -8,11 +11,11 @@ if (count($allMods) > 0) {
     <div class="row">
         <div class="col-xs-6">
             <a href="<?php echo ModuleHelper::buildAdminURL("cleanup"); ?>"
-               class="btn btn-default"><?php translate("back"); ?></a>
+               class="btn btn-default"><?php echo icon("fa fa-arrow-left"); ?> <?php translate("back"); ?></a>
         </div>
         <div class="col-xs-6"></div>
     </div>
-    <p><?php translate("disable_modules_help"); ?></p>
+    <p class="voffset3"><?php translate("disable_modules_help"); ?></p>
 
     <?php echo ModuleHelper::buildMethodCallForm("EnDisModsController", "save"); ?>
     <table class="tablesorter">
@@ -38,7 +41,7 @@ if (count($allMods) > 0) {
         </tbody>
     </table>
     <p>
-        <button type="submit" class="btn btn-danger"><?php translate("save_changes") ?></button>
+        <button type="submit" class="btn btn-primary"><?php echo icon("fa fa-save"); ?> <?php translate("save_changes") ?></button>
     </p>
     <?php
     echo ModuleHelper::endForm();

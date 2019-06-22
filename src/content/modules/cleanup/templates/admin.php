@@ -35,7 +35,7 @@ $mysql_optimize_available = in_array("mysql_optimize", getAllModules());
 
 <form action="index.php?action=cleanup" method="post" class="voffset3">
     <?php csrf_token_html(); ?>
-    <table class="tablesorter voffset3">
+    <table class="tablesorter">
         <thead>
             <tr>
                 <td style="width: 50px;"></td>
@@ -121,6 +121,6 @@ $mysql_optimize_available = in_array("mysql_optimize", getAllModules());
         </tbody>
     </table>
     <p>
-        <button name="submit" class="btn btn-success" type="submit"><?php echo icon("fas fa-broom"); ?> <?php translate("clean"); ?></button>
+        <button name="submit" class="btn btn-primary" type="submit"><?php echo icon("fas fa-broom"); ?> <?php translate("clean"); ?></button>
     </p>
 </form>

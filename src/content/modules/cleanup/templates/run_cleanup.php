@@ -1,4 +1,7 @@
 <?php
+
+use function UliCMS\HTML\icon;
+
 $controller = new CleanUpController();
 $mysql_optimize_available = in_array("mysql_optimize", getAllModules());
 ?>
@@ -76,4 +79,4 @@ if ($mysql_optimize_available and isset($_POST["optimize_db"])) {
 <?php fcflush(); ?>
 <p><?php translate("cleaning_finished"); ?></p>
 <p>
-    <a href="<?php echo ModuleHelper::buildAdminURL("cleanup"); ?>">[<?php translate("cleanup_ok") ?>]</a>
+    <a href="<?php echo ModuleHelper::buildAdminURL("cleanup"); ?>" class="btn btn-success"><?php echo icon("fa fa-check"); ?> <?php translate("cleanup_ok") ?></a>
