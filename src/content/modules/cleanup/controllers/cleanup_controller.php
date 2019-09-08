@@ -9,7 +9,6 @@ class CleanUpController extends MainClass {
   round(((data_length + index_length) / 1024 / 1024),2) as size_in_mb
 FROM information_schema.TABLES
 WHERE TABLE_NAME in ('{prefix}log', '{prefix}history', '{prefix}mails', '{prefix}peak_memory_usage') and TABLE_TYPE='BASE TABLE' and data_length + index_length > 0
-group by TABLE_NAME
 ORDER BY data_length DESC;";
         $query = Database::query($sql, true);
         while ($row = Database::fetchObject($query)) {

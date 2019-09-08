@@ -23,8 +23,8 @@ $mysql_optimize_available = in_array("mysql_optimize", getAllModules());
 <div class="row">
     <div class="col-xs-6">
         <a
-            href="<?php echo ModuleHelper::buildActionURL("disable_modules"); ?>"
-            class="btn btn-default"><?php echo icon("fas fa-list");
+            href="#"
+            class="btn btn-default disabled"><?php echo icon("fas fa-list");
 ?> <?php translate("disable_modules"); ?></a>
     </div>
     <div class="col-xs-6 text-right">
